@@ -7,5 +7,6 @@ public class CommandHandler : ICommand
     public void ScreenInteraction(ShootRaycast shootRaycast, IInteractionController interactionController)
     {
         interactionController.SetObjectOfInterest(shootRaycast.RaycastHit());
+        //
     }
 }
