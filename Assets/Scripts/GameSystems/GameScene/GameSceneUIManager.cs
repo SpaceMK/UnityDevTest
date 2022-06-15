@@ -7,9 +7,9 @@ public class GameSceneUIManager : GameSceneController
 {
     [SerializeField] Canvas gameUICanvas;
     [SerializeField] EndOfGamePopUp endOfGamePopUp;
-    GameManager gameManager;
+    IGameManager gameManager;
 
-    public override void LoadDependencies(GameManager manager)
+    public override void LoadDependencies(IGameManager manager)
     {
         gameManager = manager;
         SetupUI();

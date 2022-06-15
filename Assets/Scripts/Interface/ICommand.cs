@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface ICommand
 {
-    void ScreenInteraction(ShootRaycast shootRaycast, IInteractionController InteractionController);
+    void ScreenInteraction(ShootRaycast shootRaycast, IInteractionController InteractionController,Vector3 position);
 }
 

@@ -5,6 +5,6 @@ using UnityEngine;
 
 public abstract class GameSceneController : MonoBehaviour
 {
-    public abstract void LoadDependencies(GameManager gameManager);
+    public abstract void LoadDependencies(IGameManager gameManager);
  
 }

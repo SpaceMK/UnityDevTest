@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameCharacterHealthController : GameCharacterComponent
+public class GameCharacterHealthController :MonoBehaviour, IGameCharacterComponent
 {
     GameCharacterController characterController;
     CharacterHealthState currentHealthState;
     float currentHealth,startingHealth;
 
-    public override void LoadCharacterDataToComponents(GameCharacterController controller)
+    public void LoadCharacterDataToComponents(GameCharacterController controller)
     {
         characterController = controller;
         currentHealth = characterController.CharacterData.Health;

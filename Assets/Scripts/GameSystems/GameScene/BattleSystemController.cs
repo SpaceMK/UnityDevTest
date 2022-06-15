@@ -13,9 +13,9 @@ public class BattleSystemController : GameSceneController, IInteractionControlle
     Action<GameCharacterController> changeTurnCallBack;
     Action<Action<GameCharacterController>> characterTakeDamageCallBack;
 
-    GameManager gameManager;
+    IGameManager gameManager;
 
-    public override void LoadDependencies(GameManager manager)
+    public override void LoadDependencies(IGameManager manager)
     {
         gameManager = manager;
         characterAttackCallBack += CharacterAttackDone;
@@ -28,7 +28,7 @@ public class BattleSystemController : GameSceneController, IInteractionControlle
         for (int i = 0; i < heroes.Count; i++)
         {
             var heroData = gameManager.GameData.SelectedHeros[i];
-            heroes[i].SetUpHero(null);
+            heroes[i].SetUpHero(heroData);
         }   
     }
 
@@ -97,7 +97,7 @@ public class BattleSystemController : GameSceneController, IInteractionControlle
                 if (!CheckAvailableHeros())
                 {
                     Debug.Log($"{enemy.CharacterData.Name} has won");
-                    gameManager.EndGameSession?.Invoke(GameplayState.GameLost);
+                   // gameManager.EndGameSession?.Invoke(GameplayState.GameLost);
                 }
             }
         }
@@ -110,7 +110,7 @@ public class BattleSystemController : GameSceneController, IInteractionControlle
             else
             {
                 Debug.Log($"{characterController.CharacterData.Name} is dead");
-                gameManager.EndGameSession?.Invoke(GameplayState.GameWon);
+              //  gameManager.EndGameSession?.Invoke(GameplayState.GameWon);
             }     
         }
     }

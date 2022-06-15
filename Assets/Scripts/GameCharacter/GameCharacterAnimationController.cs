@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GameCharacterAnimationController : GameCharacterComponent
+public class GameCharacterAnimationController :MonoBehaviour, IGameCharacterComponent
 {
 
     [SerializeField] TextMeshPro statusDisplay;
@@ -24,7 +24,7 @@ public class GameCharacterAnimationController : GameCharacterComponent
         characterMaterial = characterBodyMeshRendered.material.color;
     }
 
-    public override void LoadCharacterDataToComponents(GameCharacterController controller)
+    public void LoadCharacterDataToComponents(GameCharacterController controller)
     {
         characterController = controller;
     }

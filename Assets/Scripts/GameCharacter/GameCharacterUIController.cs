@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameCharacterUIController : GameCharacterComponent
+public class GameCharacterUIController :MonoBehaviour , IGameCharacterComponent
 {
     [SerializeField] Slider healthBar;
     float currentHealth;
 
-    public override void LoadCharacterDataToComponents(GameCharacterController controller)
+    public void LoadCharacterDataToComponents(GameCharacterController controller)
     {
         healthBar.maxValue = controller.CharacterData.Health;
         currentHealth = controller.CharacterData.Health;

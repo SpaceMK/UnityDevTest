@@ -4,13 +4,15 @@ public class InputHandler : GameSceneController, ICameraComponent
 {
     BattleSystemController battleSystem;
     CommandHandler commandHandler = new CommandHandler();
-    GameManager gameManager;
+    IGameManager gameManager;
     bool enableInput =true;
+    ShootRaycast shootRaycast;
 
-    public override void LoadDependencies(GameManager manager)
+    public override void LoadDependencies(IGameManager manager)
     {
         gameManager = manager;
-        battleSystem =  (BattleSystemController)gameManager.GetGameControllerComponent(typeof(BattleSystemController));
+        shootRaycast = new ShootRaycast(this);
+        battleSystem = (BattleSystemController)gameManager.GetGameControllerComponent(typeof(BattleSystemController));
         if (battleSystem == null)
         {
             enableInput = false;
@@ -32,15 +34,13 @@ public class InputHandler : GameSceneController, ICameraComponent
         {
             if (Input.GetTouch(i).phase.Equals(TouchPhase.Began))
             {
-                ShootRaycast shootRaycast = new ShootRaycast(this, Input.GetTouch(0).position);
-                commandHandler.ScreenInteraction(shootRaycast,battleSystem);
+                commandHandler.ScreenInteraction(shootRaycast,battleSystem,Input.GetTouch(i).position);
             }
         }
 
         if (Input.GetMouseButtonDown(0))
         {
-            ShootRaycast shootRaycast = new ShootRaycast(this, Input.mousePosition);
-            commandHandler.ScreenInteraction(shootRaycast,battleSystem);
+            commandHandler.ScreenInteraction(shootRaycast,battleSystem, Input.mousePosition);
         }
 
         

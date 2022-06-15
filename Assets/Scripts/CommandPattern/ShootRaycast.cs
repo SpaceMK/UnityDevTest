@@ -2,19 +2,18 @@
 public class ShootRaycast
 {
     private Camera rayCastCamera;
-    private Vector3 screenInputPosition;
-    public Vector2 RayCastPointMatrix { private set; get; }
-    public ShootRaycast(ICameraComponent camera, Vector3 clickPosition)
+ 
+
+    public ShootRaycast(ICameraComponent camera)
     {
         rayCastCamera = camera.GetSceneCamera();
-        screenInputPosition = clickPosition;
     }
 
 
-    public GameObject RaycastHit()
+    public GameObject RaycastHit(Vector3 originPoint)
     {
         RaycastHit hit;
-        Ray ray = rayCastCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = rayCastCamera.ScreenPointToRay(originPoint);
 
         if (Physics.Raycast(ray, out hit))
             return hit.transform.gameObject;

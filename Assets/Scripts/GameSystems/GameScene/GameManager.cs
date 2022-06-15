@@ -1,16 +1,15 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
-public class GameManager : MonoBehaviour, ICameraComponent
+public class GameManager : MonoBehaviour,IGameManager
 {
     [SerializeField] GameDataController dataLoader;
     [SerializeField] List<GameSceneController> gameSceneControllers;
     [SerializeField] Camera sceneCamera;
-    public Action<GameplayState> EndGameSession;
-    public Action LoadMainMenuScene;
+    public Action<GameplayState> EndGameSession { get; set; }
     public GameDataController GameData => dataLoader;
 
     private void Start()
@@ -23,7 +22,7 @@ public class GameManager : MonoBehaviour, ICameraComponent
     {
         foreach (var controllers in gameSceneControllers)
         {
-            controllers.LoadDependencies(this);
+             controllers.LoadDependencies(this);
         }
     }
 
@@ -39,7 +38,6 @@ public class GameManager : MonoBehaviour, ICameraComponent
             if (type == controller.GetType())
                 return controller;
         }
-
         return null;
     }
 
