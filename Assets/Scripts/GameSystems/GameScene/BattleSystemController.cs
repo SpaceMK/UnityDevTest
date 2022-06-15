@@ -27,8 +27,16 @@ public class BattleSystemController : GameSceneController, IInteractionControlle
     {
         for (int i = 0; i < heroes.Count; i++)
         {
-            var heroData = gameManager.GameData.SelectedHeros[i];
-            heroes[i].SetUpHero(heroData);
+            if (gameManager.GameData.SelectedHeros.Count > i)
+            {
+                var heroData = gameManager.GameData.SelectedHeros[i];
+                heroes[i].SetUpHero(heroData);
+            }
+            else
+            {
+                heroes[i].SetUpHero(null);
+            }
+           
         }   
     }
 
@@ -97,7 +105,7 @@ public class BattleSystemController : GameSceneController, IInteractionControlle
                 if (!CheckAvailableHeros())
                 {
                     Debug.Log($"{enemy.CharacterData.Name} has won");
-                   // gameManager.EndGameSession?.Invoke(GameplayState.GameLost);
+                    gameManager.EndGameSession?.Invoke(GameplayState.GameLost);
                 }
             }
         }
@@ -110,7 +118,7 @@ public class BattleSystemController : GameSceneController, IInteractionControlle
             else
             {
                 Debug.Log($"{characterController.CharacterData.Name} is dead");
-              //  gameManager.EndGameSession?.Invoke(GameplayState.GameWon);
+                gameManager.EndGameSession?.Invoke(GameplayState.GameWon);
             }     
         }
     }
