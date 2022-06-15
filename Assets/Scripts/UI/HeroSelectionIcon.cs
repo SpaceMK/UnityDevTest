@@ -21,7 +21,7 @@ public class HeroSelectionIcon : MonoBehaviour
     public string ID { private set; get; }
     
 
-    public void AddHeroData(HeroScriptableObject h, MainMenuSceneManager sceneManager, MainMenuUIManager menuUI)
+    public void AddHeroData(HeroScriptableObject h, IMainMenuManager sceneManager, MainMenuUIManager menuUI)
     {
         hero = h;
         mainMenuUIManager = menuUI;
@@ -39,7 +39,7 @@ public class HeroSelectionIcon : MonoBehaviour
     }
 
 
-    private void SelectHero(MainMenuSceneManager sceneManage, HeroScriptableObject hero)
+    private void SelectHero(IMainMenuManager sceneManage, HeroScriptableObject hero)
     {
         isSelected = !isSelected;
         border.color = isSelected ? borderSelectionColor : Color.white;

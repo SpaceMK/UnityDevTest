@@ -11,12 +11,13 @@ public class MainMenuUIManager : MonoBehaviour
     [SerializeField] StatsPanelDisplay statsPanel;
 
     GameDataController gameData;
-    MainMenuSceneManager sceneManager;
+    IMainMenuManager sceneManager;
 
-    public void Init(GameDataController data,MainMenuSceneManager manager)
+    public void Init(IMainMenuManager manager)
     {
-        gameData = data;
+      
         sceneManager = manager;
+        gameData = sceneManager.DataController;
         sceneManager.HeroesReady += CreateHeroIcons;
         bottomBar.Init(sceneManager);
         splashScreen.ToggleSplashScreen(false);

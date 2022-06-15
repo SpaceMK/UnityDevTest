@@ -7,7 +7,7 @@ public class HeroSelectionPanel : MonoBehaviour
     [SerializeField] GameObject heroSelectionIcon;
     [SerializeField] Transform parentPanel;
     List<HeroSelectionIcon> icons = new List<HeroSelectionIcon>();
-    public void CreateHeroIcon(HeroScriptableObject hero,MainMenuSceneManager sceneManager,MainMenuUIManager menuUI)
+    public void CreateHeroIcon(HeroScriptableObject hero,IMainMenuManager sceneManager,MainMenuUIManager menuUI)
     {
         if (CheckIfHeroIconExitsts(hero))
             return;

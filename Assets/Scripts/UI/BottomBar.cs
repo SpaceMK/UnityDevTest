@@ -7,14 +7,14 @@ public class BottomBar : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] Button playButton;
-    MainMenuSceneManager sceneManager;
+    IMainMenuManager sceneManager;
 
     private void Start()
     {
         playButton.interactable = false;
     }
 
-    public void Init(MainMenuSceneManager manager)
+    public void Init(IMainMenuManager manager)
     {
         sceneManager = manager;
         sceneManager.HeroSelectionReady += TooglePlayButton;

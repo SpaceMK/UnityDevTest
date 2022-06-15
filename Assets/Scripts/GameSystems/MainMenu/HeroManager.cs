@@ -10,10 +10,10 @@ public class HeroManager : MonoBehaviour
     GameDataController gameData;
     MainMenuSceneManager sceneManager;
     private const float numberOfGamesCheck =5f; 
-    public void Init(GameDataController data, MainMenuSceneManager manager)
+    public void Init(MainMenuSceneManager manager)
     {
-        gameData = data;
         sceneManager = manager;
+        gameData = sceneManager.DataController;
         CreateHeros();
         UpgradeHero();
     }

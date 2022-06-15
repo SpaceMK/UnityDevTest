@@ -4,17 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuSceneManager : MonoBehaviour
+public class MainMenuSceneManager : MonoBehaviour, IMainMenuManager
 {
 
     [SerializeField] GameDataController dataLoader;
     [SerializeField] MainMenuUIManager uiManager;
     [SerializeField] HeroManager heroManager;
 
-    public Action HeroesReady;
-    public Action<HeroSelectionIcon, HeroScriptableObject, bool> HeroSelected;
-    public Action<bool> HeroSelectionReady;
-    public Action EnterBattle;
+    public Action HeroesReady { get; set; }
+    public Action<HeroSelectionIcon, HeroScriptableObject, bool> HeroSelected { get; set; }
+    public Action<bool> HeroSelectionReady { get; set; }
+    public Action EnterBattle { get; set; }
+
+    public GameDataController DataController => dataLoader;
 
     private void Awake()
     {
@@ -35,8 +37,8 @@ public class MainMenuSceneManager : MonoBehaviour
 
     private void LoadingComplete()
     {
-        uiManager.Init(dataLoader, this);
-        heroManager.Init(dataLoader, this);
+        uiManager.Init(this);
+        heroManager.Init(this);
     }
     private void HeroIsSelected(HeroSelectionIcon icon, HeroScriptableObject hero, bool isSelected)
     {
